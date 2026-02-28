@@ -1,0 +1,59 @@
+class ShoppingCart:
+    def __init__(self, customer_name):
+        # Initialize shopping cart
+        self.customer_name = customer_name
+        self.items = []  # Empty list for items
+
+    def add_item(self, name, price, quantity):
+        # Add item as dictionary
+        item = {"name": name, "price": price, "quantity": quantity}
+        self.items.append(item)
+
+    def remove_item(self, name):
+        # Remove item by name
+        for item in self.items:
+            if item["name"] == name:
+                self.items.remove(item)
+                break
+
+    def total_price(self):
+        # Calculate total cost
+        total = 0
+        for item in self.items:
+            total += item["price"] * item["quantity"]
+        return total
+
+    def show_cart(self):
+        # Display cart items and total
+        print("Customer:", self.customer_name)
+        for item in self.items:
+            print(item["name"], "-", item["price"], "x", item["quantity"])
+        print("Total Price:", self.total_price())
+        print("-------------------")
+
+
+# Create 2 shopping carts
+cart1 = ShoppingCart("Fahad")
+cart2 = ShoppingCart("Nazem")
+
+# Add items to cart1
+cart1.add_item("Laptop", 50000, 1)
+cart1.add_item("Mouse", 500, 2)
+cart1.add_item("Keyboard", 1500, 1)
+
+# Remove 1 item
+cart1.remove_item("Mouse")
+
+# Show cart
+cart1.show_cart()
+
+# Add items to cart2
+cart2.add_item("Phone", 30000, 1)
+cart2.add_item("Charger", 800, 2)
+cart2.add_item("Headphone", 2000, 1)
+
+# Remove 1 item
+cart2.remove_item("Charger")
+
+# Show cart
+cart2.show_cart()
