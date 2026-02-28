@@ -1,0 +1,49 @@
+class Book:
+    def __init__(self, title, author, isbn):
+        self.title = title
+        self.author = author
+        self.isbn = isbn
+        self.is_available = True
+
+class Library:
+    def __init__(self, name):
+        self.name = name
+        self.books = []
+
+    def add_book(self, book):
+        self.books.append(book)
+
+    def borrow_book(self, isbn):
+        for book in self.books:
+            if book.isbn == isbn and book.is_available:
+                book.is_available = False
+                print(f"You borrowed '{book.title}'")
+                return
+        print("Book not available.")
+
+    def return_book(self, isbn):
+        for book in self.books:
+            if book.isbn == isbn:
+                book.is_available = True
+                print(f"You returned '{book.title}'")
+                return
+
+    def show_available_books(self):
+        print(f"--- Available Books in {self.name} ---")
+        for book in self.books:
+            if book.is_available:
+                print(f"{book.title} by {book.author} (ISBN: {book.isbn})")
+
+
+lib = Library("SEU Central Library")
+b1 = Book("One Punch man", "Murata", "001")
+b2 = Book("JoJo's Bizzare Adventure", "Shinjo Araki", "002")
+b3 = Book("Jujutsu kaisen", "Gege Aktsumaki", "003")
+b4 = Book("Power Systems", "Delwar Khan", "004")
+
+for b in [b1, b2, b3, b4]: lib.add_book(b)
+
+lib.borrow_book("001")
+lib.borrow_book("002")
+lib.return_book("001")
+lib.show_available_books()
