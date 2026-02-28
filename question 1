@@ -1,0 +1,28 @@
+class Car:
+    def __init__(self, brand, model, year, speed=0):
+        self.brand = brand
+        self.model = model
+        self.year = year
+        self.speed = speed
+
+    def accelerate(self, amount):
+        self.speed += amount
+        print(f"{self.model} accelerated by {amount}. Current speed: {self.speed}")
+
+    def brake(self, amount):
+        self.speed = max(0, self.speed - amount)
+        print(f"{self.model} braked by {amount}. Current speed: {self.speed}")
+
+    def display_info(self):
+        print(f"Car: {self.year} {self.brand} {self.model} & Speed: {self.speed} km/h")
+
+car1 = Car("Toyota", "Supra", 2024)
+car2 = Car("Tesla", "Model T", 2026)
+
+car1.accelerate(50)
+car1.brake(20)
+car1.display_info()
+
+car2.accelerate(100)
+car2.brake(120)
+car2.display_info()
