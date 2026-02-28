@@ -1,0 +1,32 @@
+class Employee:
+    total_employees = 0
+
+    def __init__(self, name, employee_id, department, salary):
+        self.name = name
+        self.employee_id = employee_id
+        self.department = department
+        self.salary = salary
+        Employee.total_employees += 1
+
+    def give_raise(self, percent):
+        self.salary += self.salary * (percent / 100)
+
+    def give_cut(self, percent):
+        self.salary -= self.salary * (percent / 100)
+
+    def details(self):
+        print(f"ID: {self.employee_id} | Name: {self.name} | Dept: {self.department} | Salary: ${self.salary:.2f}")
+
+e1 = Employee("Kamrul", "E01", "IT", 50000)
+e2 = Employee("Sofiqul", "E02", "HR", 45000)
+e3 = Employee("Jamrul", "E03", "Sales", 40000)
+e4 = Employee("Damrul", "E03", "Sales", 70000)
+
+e1.give_raise(10)
+e2.give_raise(5)
+e3.give_cut(15)
+
+print(f"Total Employees Created: {Employee.total_employees}")
+Employee.details(e1)
+Employee.details(e2)
+Employee.details(e3)
